@@ -1,1 +1,14 @@
-<h1>Im an interest calculator</h1>
+<h1>Interest Calculator</h1>
+
+
+<%= form_for :interest_calculator, url: { action: :new }, method: :get do |f|   %>
+  <p>Сколько % составляет число</p>
+  <%= number_field_tag :a, params[:a], step: :any, id: "first_number" %>
+  <p>от числа</p>
+  <%= number_field_tag :b, params[:b], step: :any, id: "second_number" %>
+  <%= f.submit 'Calculate!' %>
+<% end %>
+
+<% unless @result.nil? %>
+  <p id="answer">Число <%= @first %> от числа <%= @second %> = <%= @result %>% </p>
+<% end %>
