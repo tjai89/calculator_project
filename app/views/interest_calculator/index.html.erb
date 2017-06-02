@@ -1,16 +1,46 @@
 <h1>Interest Calculator</h1>
 
+<div id="interest_calculator">
+  <div id="number_to_number">
+    <%= form_for :interest_calculator, url: { action: :new }, method: :get do |f|   %>
+      <p>Сколько % составляет число</p>
+      <%= number_field_tag :a_0, params[:a_0], step: :any, id: "first_number_0" %>
+      <p>от числа</p>
+      <%= number_field_tag :b_0, params[:b_0], step: :any, id: "second_number_0" %>
+      <%= f.submit 'Calculate!', id: "number_to_number" %>
+    <% end %>
 
-<%= form_for :interest_calculator, url: { action: :new }, method: :get do |f|   %>
-  <p>Сколько % составляет число</p>
-  <%= number_field_tag :a, params[:a], step: :any, id: "first_number" %>
-  <p>от числа</p>
-  <%= number_field_tag :b, params[:b], step: :any, id: "second_number" %>
-  <%= f.submit 'Calculate!' %>
-<% end %>
+    <% unless @result_0.nil? %>
+      <p>Число <%= @first_0 %> от числа <%= @second_0 %> = <label id="answer_0"><%= @result_0 %>%</label></p>
+    <% end %>
+    ______________________________________________________________________________________
+  </div>
 
-<% unless @result.nil? %>
-  <p id="answer">Число <%= @first %> от числа <%= @second %> = <%= @result %>% </p>
-<% end %>
-______________________________________________________________________________________
+  <%= form_for :interest_calculator, url: { action: :new }, method: :get do |f|   %>
+    <p>Сколько составляет</p>
+    <%= number_field_tag :a_1, params[:a_1], step: :any, id: "first_number_1" %>
+    <p>% от числа</p>
+    <%= number_field_tag :b_1, params[:b_1], step: :any, id: "second_number_1" %>
+    <%= f.submit 'Calculate!', id: "persent_from_number" %>
+  <% end %>
+
+  <% unless @result_1.nil? %>
+    <p><%= @first_1 %>% от числа <%= @second_1 %> = <label id="answer_1"><%= @result_1 %></label></p>
+  <% end %>
+  ______________________________________________________________________________________
+
+
+  <%= form_for :interest_calculator, url: { action: :new }, method: :get do |f|   %>
+    <p>Прибавить</p>
+    <%= number_field_tag :a_2, params[:a_2], step: :any, id: "first_number_2" %>
+    <p>% к числу</p>
+    <%= number_field_tag :b_2, params[:b_2], step: :any, id: "second_number_2" %>
+    <%= f.submit 'Calculate!', id: "persent_from_number" %>
+  <% end %>
+
+  <% unless @result_1.nil? %>
+    <p>Прибавить <%= @first_2 %>% к числу <%= @second_2 %> = <label id="answer_2"><%= @result_1 %></label></p>
+  <% end %>
+  ______________________________________________________________________________________
+</div>
 
