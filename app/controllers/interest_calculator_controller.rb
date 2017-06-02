@@ -1,12 +1,11 @@
 class InterestCalculatorController < ApplicationController
   include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend  ActiveModel::Naming
 
-  validates :a_0, :b_0, :a_1, :b_1, numericality: { only_integer: true }
-
+  validates :a_0, :b_0, :a_1, :b_1, :a_2, :b_2, :a_3, :b_3, numericality: { only_integer: true }
 
   def new
+
+
     # If accepted parameter is integer, then it shows in view as 5, when it
     # is float, it shows as 5.1  
     @first_0   = params[:a_0].to_f % 1 != 0 ? params[:a_0].to_f : params[:a_0].to_i
@@ -14,39 +13,28 @@ class InterestCalculatorController < ApplicationController
 
     @first_1   = params[:a_1].to_f % 1 != 0 ? params[:a_1].to_f : params[:a_1].to_i
     @second_1  = params[:b_1].to_f % 1 != 0 ? params[:b_1].to_f : params[:b_1].to_i
-    
+
     @first_2   = params[:a_2].to_f % 1 != 0 ? params[:a_2].to_f : params[:a_2].to_i         
-    @second_2  = params[:b_2].to_f % 1 != 0 ? params[:b_2].to_f : params[:b_2].to_i  
+    @second_2  = params[:b_2].to_f % 1 != 0 ? params[:b_2].to_f : params[:b_2].to_i
 
+    @first_3   = params[:a_3].to_f % 1 != 0 ? params[:a_3].to_f : params[:a_3].to_i         
+    @second_3  = params[:b_3].to_f % 1 != 0 ? params[:b_3].to_f : params[:b_3].to_i  
 
-    # @first_0   = params[:a_0]
-    # @second_0  = params[:b_0]
-    # @first_1   = params[:a_1]
-    # @second_1  = params[:b_1]
-
-    # integer_float_converter(@first_0, @second_0, @first_1, @second_1)
-
-    # result = @first_0, @second_0, @first_1, @second_1 
-
-    # integer_float_converter(*result)
-
-    # @first_0, @second_0, @first_1, @second_1 = result
-
+    # How many percent is number from the number number 
     number_to_number(@first_0, @second_0) 
 
+    # Which number corresponds to % of the number
     persent_from_number(@first_1, @second_1)
 
+    # Add % to the number
+    add_persent_to_number(@first_2, @second_2)
+
+    # Subtract % out of number
+    substract_persent_from_number(@first_3, @second_3)
     render :index
   end
 
  private 
-
-  # def integer_float_converter(*result)
-  #   result = [:a_0, :b_0, :a_1, :b_1].map do |key|
-  #     value = params[key].to_f
-  #     value % 1 == 0 ? value.to_i : value
-  #   end
-  # end
 
    def number_to_number(a = 0, b = 0)   
     # If the first number is zero, it sends 0% answer. If the second number is zero 
@@ -67,6 +55,23 @@ class InterestCalculatorController < ApplicationController
       @result_1 = 0
     else
       @result_1 = b.to_f / 100 * a.to_f 
+    end
+
+
+    def add_persent_to_number(a = 0, b = 0) 
+    # If the first or second number is zero, it sends second number answer. If the second 
+    # number is zer, it sends zero answer. Otherwise simple formula calculation.
+      if a.zero? 
+        @result_2 = b
+      elsif b.zero? 
+        @result_2 = 0
+      else 
+        @result_2 = b.to_f / 100 * a.to_f + b.to_f 
+      end
+    end
+
+    def substract_persent_from_number(a = 0, b = 0)
+      @result_3 = b.to_f - b.to_f / 100 * a.to_f
     end
   end  
 end
