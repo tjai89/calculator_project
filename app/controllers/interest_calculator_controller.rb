@@ -3,8 +3,19 @@ class InterestCalculatorController < ApplicationController
 
   validates :a_0, :b_0, :a_1, :b_1, :a_2, :b_2, :a_3, :b_3, numericality: { only_integer: true }
 
+
+
+  def index
+    @result_0 = 0
+    @result_1 = 0    
+  end
+
   def new
 
+    respond_to do |format|
+      format.html { render 'index.html.erb' }
+      format.js
+    end 
 
     # If accepted parameter is integer, then it shows in view as 5, when it
     # is float, it shows as 5.1  
@@ -20,7 +31,7 @@ class InterestCalculatorController < ApplicationController
     @first_3   = params[:a_3].to_f % 1 != 0 ? params[:a_3].to_f : params[:a_3].to_i         
     @second_3  = params[:b_3].to_f % 1 != 0 ? params[:b_3].to_f : params[:b_3].to_i  
 
-    # How many percent is number from the number number 
+    # How many percent is number from the number 
     number_to_number(@first_0, @second_0) 
 
     # Which number corresponds to % of the number
@@ -31,7 +42,6 @@ class InterestCalculatorController < ApplicationController
 
     # Subtract % out of number
     substract_persent_from_number(@first_3, @second_3)
-    render :index
   end
 
  private 
