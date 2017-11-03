@@ -22,7 +22,7 @@ Recommended packages on Debian-based systems:
 
 Step-by-step dependencies installation on Ubuntu:
 
-* Installing proper Ruby version(all commands should run from terminal):
+Installing proper Ruby version(all commands should run from terminal):
 
 The first step is to install some dependencies for Ruby.
 
@@ -82,7 +82,7 @@ Generate environment variables (see below):
 
 	rake hcm4all:variables
 
-It will generate a default config/application.yml Put your postgres PG_USER and PG_PASSWORD fields as key-value. For example:
+It will generate a default config/application.yml Put your postgres user PG_USER and PG_PASSWORD fields as key-value. For example:
 	
 	PG_USER: hcm4all_dev
 	PG_PASSWORD: xinuge80
